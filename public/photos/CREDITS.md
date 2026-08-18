@@ -27,3 +27,15 @@ photos and were swapped out; this table reflects only what actually shipped.
 | bath.webp | Type B interior. | https://unsplash.com/photos/O0mWkPghw6E |
 | bath2.webp | Type A and D interiors; gallery. | https://unsplash.com/photos/JGfXR2a8RNg |
 | terrace.webp | Type C interior; gallery. | https://unsplash.com/photos/ZkKy2cG92YY |
+
+<!-- room set: every room a villa actually has -->
+
+| File | Used for | Source |
+| --- | --- | --- |
+| study.webp | A study desk in warm light. | https://unsplash.com/photos/7DvtGDl_ers |
+| parking.webp | The covered car porch. | https://unsplash.com/photos/A59ssOnsONk |
+| lawn.webp | The lawn behind the house. | https://unsplash.com/photos/PQBOQvMH2iE |
+| kids.webp | A second bedroom in warm neutrals. | https://unsplash.com/photos/CEzocPTlA_c |
+| bath3.webp | A bathroom in terracotta tile and stone. | https://unsplash.com/photos/3E3OowQoPMY |
+| kitchen2.webp | A kitchen in curved warm wood. | https://unsplash.com/photos/_kKTH1pEZ-I |
+| pooja.webp | The pooja room niche. | https://unsplash.com/photos/jQZlYr3JKLw |

@@ -90,23 +90,29 @@ export default function VillaModal({ residence, available, onClose }) {
               <Row label="PLOT" value={sqft(residence.plotSize)} />
               <Row label="CARPET" value={sqft(residence.carpet)} />
               <Row label="BUILT-UP" value={sqft(residence.built)} />
+              <Row label="PARKING" value={residence.parking} />
               <Row label="ASPECT" value={residence.facing} />
               <Row label="FROM" value={inr(residence.price)} />
             </dl>
           </div>
 
           <div>
-            <p className="eyebrow">Interiors</p>
+            <p className="eyebrow">Every room</p>
+            {/* Named, not just shown. An unlabelled grid of warm interiors
+                tells a buyer nothing about which of them they are buying. */}
             <ul className="mt-4 grid grid-cols-2 gap-1.5">
               {residence.interiors.map((photo) => (
-                <li key={photo.src} className="overflow-hidden bg-sand/40 first:col-span-2">
+                <li key={`${photo.room}-${photo.src}`} className="group/room relative overflow-hidden bg-sand/40">
                   <img
                     src={photo.src}
                     alt={photo.alt}
                     loading="lazy"
                     decoding="async"
-                    className="aspect-[4/3] w-full object-cover first:aspect-[16/9]"
+                    className="aspect-[4/3] w-full object-cover"
                   />
+                  <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 to-transparent px-2.5 pt-8 pb-2 font-mono text-[0.5625rem] uppercase tracking-[0.14em] text-ivory">
+                    {photo.room}
+                  </span>
                 </li>
               ))}
             </ul>
