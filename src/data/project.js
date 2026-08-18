@@ -35,71 +35,71 @@ export const project = {
 
 export const photos = {
   heroArrival: {
-    src: '/photos/hero-arrival.webp',
+    src: 'photos/hero-arrival.webp',
     alt: 'The approach to a villa at dusk, lit from within, palms either side of the walk.',
   },
   villaA: {
-    src: '/photos/villa-a.webp',
+    src: 'photos/villa-a.webp',
     alt: 'The Courtyard Villa — front elevation, timber cladding over a gated plot.',
   },
   villaB: {
-    src: '/photos/villa-b.webp',
+    src: 'photos/villa-b.webp',
     alt: 'The Study Villa — front elevation, white plaster and a covered entrance.',
   },
   villaC: {
-    src: '/photos/villa-c.webp',
+    src: 'photos/villa-c.webp',
     alt: 'The Garden Villa — front elevation, timber-screened glazing beside the lap pool.',
   },
   villaD: {
-    src: '/photos/villa-d.webp',
+    src: 'photos/villa-d.webp',
     alt: 'The Grand Villa — front elevation, stone-clad and set back on its plot.',
   },
   green: {
-    src: '/photos/green.webp',
+    src: 'photos/green.webp',
     alt: 'The garden walk between plots, hedged on both sides.',
   },
   poolDetail: {
-    src: '/photos/pool-detail.webp',
+    src: 'photos/pool-detail.webp',
     alt: 'A private pool seen through an open window.',
   },
   travertine: {
-    src: '/photos/travertine.webp',
+    src: 'photos/travertine.webp',
     alt: 'Travertine, close up, showing its natural bedding lines.',
   },
   kitchen: {
-    src: '/photos/kitchen.webp',
+    src: 'photos/kitchen.webp',
     alt: 'A kitchen with a marble island and an open dining table beyond.',
   },
   living: {
-    src: '/photos/living.webp',
+    src: 'photos/living.webp',
     alt: 'A living room in warm neutrals with morning light falling across the floor.',
   },
   livingAlt: {
-    src: '/photos/living-alt.webp',
+    src: 'photos/living-alt.webp',
     alt: 'A second living room, pale upholstery against lime-washed walls.',
   },
   dining: {
-    src: '/photos/dining.webp',
+    src: 'photos/dining.webp',
     alt: 'Sunlight moving across a dining table and its chairs.',
   },
   bedroom: {
-    src: '/photos/bedroom.webp',
+    src: 'photos/bedroom.webp',
     alt: 'A bedroom with a large bed and a single painting on the wall.',
   },
   bedroomAlt: {
-    src: '/photos/bedroom-alt.webp',
+    src: 'photos/bedroom-alt.webp',
     alt: 'A bed set against a plaster wall, with a plant in the light beside it.',
   },
   bath: {
-    src: '/photos/bath.webp',
+    src: 'photos/bath.webp',
     alt: 'A freestanding bathtub beneath a shuttered window.',
   },
   bath2: {
-    src: '/photos/bath2.webp',
+    src: 'photos/bath2.webp',
     alt: 'A bathroom in stone and plaster, afternoon light crossing the tub.',
   },
   terrace: {
-    src: '/photos/terrace.webp',
+    src: 'photos/terrace.webp',
     alt: 'A covered terrace with a dining table, looking out over the trees.',
   },
 }
