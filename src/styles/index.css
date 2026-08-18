@@ -1,0 +1,137 @@
+@import 'tailwindcss';
+
+/* Latin subsets only. The site is set in English, so the extended, Cyrillic
+   and Vietnamese cuts would otherwise sit in the build unread. */
+@import '@fontsource/cormorant-garamond/latin-300.css';
+@import '@fontsource/cormorant-garamond/latin-400.css';
+@import '@fontsource/cormorant-garamond/latin-500.css';
+@import '@fontsource/cormorant-garamond/latin-300-italic.css';
+@import '@fontsource-variable/inter/wght.css';
+@import '@fontsource/jetbrains-mono/latin-400.css';
+
+/* ---------------------------------------------------------------------------
+   DESIGN TOKENS
+   ---------------------------------------------------------------------------
+   One warm family. Everything on the page is either lime-washed plaster
+   (ivory → sand → stone), the espresso the building is drawn in, or the single
+   clay accent borrowed from terracotta screens. No cool greys anywhere — a
+   grey shadow is what makes a warm palette read as cheap.
+   --------------------------------------------------------------------------- */
+@theme {
+  --color-ivory: #f3ede2;
+  --color-ivory-lift: #faf6ee;
+  --color-sand: #e7dccb;
+  --color-stone: #d3c4ac;
+  --color-clay: #b07a50;
+  --color-clay-deep: #8d5e39;
+  --color-ink: #241c16;
+  --color-ink-soft: #55483d;
+  --color-muted: #8c7f6f;
+  --color-espresso: #1b1410;
+
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-sans: 'Inter Variable', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    background: var(--color-ivory);
+    /* Lenis drives the scroll; native smoothing would fight it. */
+    scroll-behavior: auto;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-clay);
+    color: var(--color-ivory-lift);
+  }
+
+  /* A hairline that belongs to the plaster rather than sitting on top of it. */
+  hr {
+    border: 0;
+    border-top: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+  }
+}
+
+@layer components {
+  /* Small caps metadata — plot numbers, section labels, unit codes. */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .rule {
+    height: 1px;
+    background: color-mix(in srgb, var(--color-ink) 14%, transparent);
+  }
+
+  /* Display type wants tighter leading and optical, not metric, sizing. */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.015em;
+  }
+
+  .shell {
+    width: 100%;
+    max-width: 84rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .shell {
+      padding-inline: 3rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .shell {
+      padding-inline: 4.5rem;
+    }
+  }
+}
+
+@layer utilities {
+  /* Paper grain. Kept as an overlay so it never tints the colours beneath. */
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.32'/%3E%3C/svg%3E");
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
