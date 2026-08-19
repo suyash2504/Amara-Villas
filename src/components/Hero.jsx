@@ -69,7 +69,10 @@ export default function Hero() {
         </div>
 
         <div className="shell">
-          <h1 className="display flex flex-wrap text-[clamp(4.5rem,19vw,17rem)] leading-[0.82] tracking-[0.02em] text-ivory">
+          {/* `font-extralight` (200) rather than the shared display weight:
+              at 272px the thin cut is the point, and it is the one place on
+              the site big enough to carry it. */}
+          <h1 className="display flex flex-wrap text-[clamp(4.5rem,19vw,17rem)] font-extralight leading-[0.82] tracking-[0.02em] text-ivory">
             <span className="sr-only">
               {project.name} {project.suffix} — {project.tagline}
             </span>

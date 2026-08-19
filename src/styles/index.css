@@ -2,8 +2,8 @@
 
 /* Latin subsets only. The site is set in English, so the extended, Cyrillic
    and Vietnamese cuts would otherwise sit in the build unread. */
-@import '@fontsource-variable/bodoni-moda/opsz.css';
-@import '@fontsource-variable/bodoni-moda/opsz-italic.css';
+@import '@fontsource-variable/newsreader/opsz.css';
+@import '@fontsource-variable/newsreader/opsz-italic.css';
 @import '@fontsource-variable/inter/wght.css';
 @import '@fontsource/jetbrains-mono/latin-400.css';
 
@@ -27,7 +27,7 @@
   --color-muted: #8c7f6f;
   --color-espresso: #1b1410;
 
-  --font-display: 'Bodoni Moda Variable', 'Didot', 'Times New Roman', serif;
+  --font-display: 'Newsreader Variable', 'Georgia', 'Times New Roman', serif;
   --font-sans: 'Inter Variable', 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
@@ -86,14 +86,14 @@
   /* Display type wants tighter leading and optical, not metric, sizing. */
   .display {
     font-family: var(--font-display);
-    /* Bodoni Moda's lightest cut is 400; asking for 300 just clamps. */
-    font-weight: 400;
+    /* 300 is the floor that still reads as a heading at 24px, which is
+       where the villa names sit. The hero overrides this to 200 — at 272px
+       that thinness is the whole point, and at 24px it disappears. */
+    font-weight: 300;
     line-height: 0.95;
-    /* A didone's hairlines need air, not the negative tracking a Garamond
-       wanted — set tight, the thick stems close the counters up. */
-    letter-spacing: 0.005em;
-    /* Let the browser drive the opsz axis from the rendered size: hairline
-       contrast on the hero wordmark, sturdier strokes on a 24px villa name. */
+    letter-spacing: 0.03em;
+    /* Let the browser drive the opsz axis from the rendered size: the fine
+       editorial cut on the hero wordmark, a sturdier one at 24px. */
     font-optical-sizing: auto;
   }
 
