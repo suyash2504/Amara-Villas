@@ -72,11 +72,18 @@ export default function Nav() {
           <div className="flex items-center gap-5">
             <a
               href="#enquire"
-              className={`hidden border px-6 py-3 font-mono text-[0.6875rem] uppercase tracking-[0.18em] transition-colors duration-500 hover:border-clay hover:text-clay sm:inline-block ${
-                lifted ? 'border-ink/25' : 'border-ivory/40 text-ivory'
+              // Same clay fill as the Button component's hover, so the one
+              // call to action that sits outside a section behaves like the
+              // ones inside them.
+              className={`group relative hidden overflow-hidden border px-6 py-3 font-mono text-[0.6875rem] uppercase tracking-[0.18em] transition-colors duration-500 hover:border-clay hover:text-ivory sm:inline-block ${
+                lifted ? 'border-ink/25 text-ink' : 'border-ivory/40 text-ivory'
               }`}
             >
-              Enquire
+              <span
+                aria-hidden
+                className="absolute inset-0 origin-bottom scale-y-0 bg-clay transition-transform duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-y-100"
+              />
+              <span className="relative">Enquire</span>
             </a>
             <button
               type="button"
