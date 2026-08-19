@@ -139,11 +139,14 @@ export default function VillaModal({ residence, available, onClose }) {
               ? `${available} plot${available === 1 ? '' : 's'} of Type ${residence.code} still unallotted.`
               : `Every Type ${residence.code} plot is allotted — the other types still have plots open.`}
           </p>
-          <div className="flex gap-3">
+          {/* Stacked on a phone: side by side, the secondary label wrapped to
+              two lines and left the two controls at different heights, which
+              read as a broken button rather than a quieter one. */}
+          <div className="flex flex-col gap-3 sm:flex-row">
             <a
               href="#plans"
               onClick={onClose}
-              className="border border-ink/25 px-6 py-3 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-ink transition-colors duration-500 hover:border-clay hover:text-clay"
+              className="inline-flex items-center justify-center whitespace-nowrap border border-ink/25 px-8 py-4 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-ink transition-colors duration-500 hover:border-clay hover:text-clay"
             >
               Find on the map
             </a>
