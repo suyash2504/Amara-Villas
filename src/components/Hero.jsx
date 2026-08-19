@@ -2,9 +2,12 @@ import { useEffect, useState } from 'react'
 import { project, stats, photos } from '../data/project.js'
 
 /**
- * Above the fold, so the entrance is time-based rather than observed: the
- * letters set themselves one after another while the photograph settles
- * behind them.
+ * Above the fold, so the entrance is time-based rather than observed —
+ * everything fades up on a stagger once the first frame is painted.
+ *
+ * The standing motion is in the photograph, not the type: the wordmark is set
+ * once and left alone, while the image keeps drifting for as long as anyone
+ * is looking at it.
  *
  * The one section on the site set dark rather than ivory. The hero photograph
  * is a dusk arrival shot — a lit villa against a darkening sky — and forcing
@@ -19,21 +22,23 @@ export default function Hero() {
     return () => cancelAnimationFrame(id)
   }, [])
 
-  const letters = project.name.split('')
 
   return (
     <section id="top" className="relative min-h-[100svh] overflow-hidden bg-espresso text-ivory">
       {/* The one photograph that loads eagerly — it is the LCP element, so it
           is neither lazy nor decoded async. */}
+      {/* The motion in this hero lives here, in the photograph, rather than on
+          the wordmark: a slow push into the house that never quite arrives.
+          Transform-only so it stays on the compositor, and it holds still
+          entirely under prefers-reduced-motion. */}
       <img
         src={photos.heroArrival.src}
         alt={photos.heroArrival.alt}
         fetchPriority="high"
-        className="absolute inset-0 h-full w-full object-cover"
+        className="hero-drift absolute inset-0 h-full w-full object-cover"
         style={{
           opacity: ready ? 1 : 0,
-          transform: ready ? 'none' : 'scale(1.06)',
-          transition: 'opacity 1.6s var(--ease-out-soft), transform 2.4s var(--ease-out-soft)',
+          transition: 'opacity 1.6s var(--ease-out-soft)',
         }}
       />
 
@@ -72,24 +77,22 @@ export default function Hero() {
           {/* `font-extralight` (200) rather than the shared display weight:
               at 272px the thin cut is the point, and it is the one place on
               the site big enough to carry it. */}
-          <h1 className="display flex flex-wrap text-[clamp(4.5rem,19vw,17rem)] font-extralight leading-[0.82] tracking-[0.02em] text-ivory">
+          {/* Set as one word, not per-letter. The letters used to sit in
+              individual `overflow-hidden` masks so they could rise into view,
+              but `leading-[0.82]` makes the line box shorter than the glyphs,
+              so those masks were shaving the tops and feet off the letters.
+              The motion moved to the photograph, so the masks went with it. */}
+          <h1
+            className="display text-[clamp(4.5rem,19vw,17rem)] font-extralight leading-[0.82] tracking-[0.02em] text-ivory"
+            style={{
+              opacity: ready ? 1 : 0,
+              transition: 'opacity 1.6s var(--ease-out-soft) 300ms',
+            }}
+          >
             <span className="sr-only">
               {project.name} {project.suffix} — {project.tagline}
             </span>
-            {letters.map((ch, i) => (
-              <span key={i} aria-hidden className="inline-block overflow-hidden">
-                <span
-                  className="inline-block"
-                  style={{
-                    opacity: ready ? 1 : 0,
-                    transform: ready ? 'none' : 'translate3d(0, 0.85em, 0)',
-                    transition: `opacity 1.1s var(--ease-out-soft) ${380 + i * 110}ms, transform 1.4s var(--ease-out-soft) ${380 + i * 110}ms`,
-                  }}
-                >
-                  {ch}
-                </span>
-              </span>
-            ))}
+            <span aria-hidden>{project.name}</span>
           </h1>
 
           <div
@@ -141,7 +144,24 @@ export default function Hero() {
         </span>
       </a>
 
-      <style>{`@keyframes drop { 0% { transform: translateY(-100%) } 60%,100% { transform: translateY(320%) } }`}</style>
+      <style>{`
+        @keyframes drop { 0% { transform: translateY(-100%) } 60%,100% { transform: translateY(320%) } }
+
+        /* 40s each way, and only 6% of travel — slow and small enough that
+           you notice the frame has changed rather than watching it move. */
+        @keyframes heroDrift {
+          from { transform: scale(1.04) translate3d(0, 0, 0); }
+          to   { transform: scale(1.10) translate3d(-1.4%, -1%, 0); }
+        }
+        .hero-drift {
+          transform: scale(1.04);
+          animation: heroDrift 40s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+          will-change: transform;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-drift { animation: none; transform: scale(1.04); }
+        }
+      `}</style>
     </section>
   )
 }
