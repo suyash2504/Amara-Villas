@@ -134,12 +134,22 @@ export const photos = {
 
 /** The gallery section, in the order the images are read. */
 export const gallery = [
+  // A caption names a villa type only where that photograph is genuinely
+  // that type's room in the residences below. The gallery used to caption
+  // Type B's living room as Type C's — the same contradiction the single
+  // inventory exists to prevent, just in prose instead of numbers.
   { ...photos.villaA, caption: 'Type A, arriving' },
-  { ...photos.poolDetail, caption: 'The private pool, Type D' },
-  { ...photos.livingAlt, caption: 'A living room, Type C' },
+  { ...photos.living, caption: 'A living room, Type C' },
+  { ...photos.pooja, caption: 'The pooja room' },
+  { ...photos.villaB, caption: 'Type B, from the street' },
+  { ...photos.kitchen2, caption: 'A kitchen, Type B' },
   { ...photos.bedroomAlt, caption: 'A bedroom, Type B' },
-  { ...photos.bath2, caption: 'Stone and afternoon light' },
-  { ...photos.terrace, caption: 'The covered terrace, Type C' },
+  { ...photos.villaC, caption: 'Type C, behind the screen' },
+  { ...photos.terrace, caption: 'The verandah, Type C' },
+  { ...photos.bath3, caption: 'Stone and afternoon light' },
+  { ...photos.villaD, caption: 'Type D, at the street head' },
+  { ...photos.poolDetail, caption: 'The private pool, Type D' },
+  { ...photos.green, caption: 'The walk between plots' },
 ]
 
 export const stats = [

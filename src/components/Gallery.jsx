@@ -15,7 +15,7 @@ import { gallery } from '../data/project.js'
  */
 
 /** Which plates run tall. Index-based, because the rhythm is a layout choice. */
-const TALL = new Set([0, 3])
+const TALL = new Set([0, 4, 8])
 
 export default function Gallery() {
   const [open, setOpen] = useState(null)
