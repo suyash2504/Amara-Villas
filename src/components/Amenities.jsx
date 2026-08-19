@@ -2,55 +2,56 @@ import { Reveal, SectionHead } from './Ui.jsx'
 import { amenities } from '../data/project.js'
 
 /**
- * Drawn glyphs rather than an icon set: eight marks in one weight, each one
- * a plan or a section of the thing it names, so the row reads as a continuous
- * drawing instead of a sticker sheet.
+ * Drawn glyphs rather than an icon set — but drawn as objects, not as plans.
+ *
+ * The first version of these was eight plan views, which was a nice idea and a
+ * bad drawing: a court, a pool, a gym and a terrace all reduce to "a rectangle
+ * with something inside it", so at icon size the eight of them shared one
+ * silhouette and none of them read. These are the things themselves — a tree,
+ * a dumbbell, a bell — chosen so no two have the same outline.
  */
 const GLYPHS = {
   court: (
     <>
-      <rect x="7" y="7" width="34" height="34" />
-      <circle cx="24" cy="24" r="9.5" />
-      <circle cx="24" cy="24" r="2" fill="currentColor" stroke="none" />
+      <circle cx="24" cy="17" r="11" />
+      <path d="M24 42V22" />
+      <path d="M24 30l-6.5-5.5M24 34.5l6.5-5.5" />
     </>
   ),
   pool: (
     <>
-      <rect x="7" y="13" width="34" height="22" rx="1.5" />
-      <path d="M7 20.5h34M7 27.5h34" strokeDasharray="3 3" opacity="0.6" />
-      <path d="M11 13v22M37 13v22" opacity="0.35" />
+      <rect x="6" y="15" width="36" height="20" rx="3" />
+      <path d="M10 22.5c2.3-2.3 4.7-2.3 7 0s4.7 2.3 7 0 4.7-2.3 7 0 4.7 2.3 7 0" />
+      <path d="M10 29.5c2.3-2.3 4.7-2.3 7 0s4.7 2.3 7 0 4.7-2.3 7 0 4.7 2.3 7 0" opacity="0.55" />
     </>
   ),
   gym: (
     <>
-      <rect x="7" y="10" width="34" height="28" />
-      <path d="M24 10v28" opacity="0.5" />
-      {/* Weights on one side, a mat on the other */}
-      <path d="M11 24h9M11 21v6M20 21v6" />
-      <rect x="28" y="18" width="9" height="12" rx="1" opacity="0.6" />
+      <path d="M15 24h18" />
+      <rect x="9" y="16.5" width="6" height="15" rx="1.5" />
+      <rect x="33" y="16.5" width="6" height="15" rx="1.5" />
+      <path d="M5.5 20v8M42.5 20v8" />
     </>
   ),
   library: (
     <>
-      <rect x="7" y="7" width="34" height="34" />
-      <path d="M11 11v26M37 11v26" opacity="0.45" />
-      <path d="M11 15h4M11 21h4M11 27h4M33 15h4M33 21h4M33 27h4" opacity="0.7" />
-      <circle cx="24" cy="26" r="6" />
+      <path d="M24 15.5v23" />
+      <path d="M24 15.5c-5-2.8-11-2.8-16-1v23c5-1.8 11-1.8 16 1" />
+      <path d="M24 15.5c5-2.8 11-2.8 16-1v23c-5-1.8-11-1.8-16 1" />
     </>
   ),
   dining: (
     <>
-      <circle cx="24" cy="24" r="11" />
-      {Array.from({ length: 12 }).map((_, i) => {
-        const a = (i / 12) * Math.PI * 2
+      <circle cx="24" cy="24" r="10" />
+      {Array.from({ length: 8 }).map((_, i) => {
+        const a = (i / 8) * Math.PI * 2 + Math.PI / 8
         return (
           <line
             key={i}
-            x1={24 + Math.cos(a) * 14}
-            y1={24 + Math.sin(a) * 14}
+            x1={24 + Math.cos(a) * 13.5}
+            y1={24 + Math.sin(a) * 13.5}
             x2={24 + Math.cos(a) * 17.5}
             y2={24 + Math.sin(a) * 17.5}
-            opacity="0.65"
           />
         )
       })}
@@ -58,26 +59,24 @@ const GLYPHS = {
   ),
   terrace: (
     <>
-      <rect x="7" y="10" width="34" height="28" />
-      <rect x="7" y="10" width="34" height="5" opacity="0.5" />
-      <rect x="7" y="33" width="34" height="5" opacity="0.5" />
-      <circle cx="19" cy="24" r="4.5" />
-      <circle cx="31" cy="24" r="3" opacity="0.6" />
+      <path d="M7 25a17 17 0 0 1 34 0z" />
+      <path d="M24 25v17" />
+      <path d="M7 25c3.5-3.5 7-3.5 10.5 0s7 3.5 10.5 0 7-3.5 10.5 0" opacity="0.55" />
     </>
   ),
   kids: (
     <>
-      <rect x="7" y="10" width="34" height="28" />
-      <circle cx="22" cy="25" r="8.5" strokeDasharray="2.5 3" />
-      <path d="M41 10a20 20 0 0 0-20 20" opacity="0.5" />
+      <path d="M11 40l13-26 13 26" />
+      <path d="M16.5 25h15" />
+      <path d="M20 25v9M28 25v9" opacity="0.7" />
+      <path d="M18.5 34h11" />
     </>
   ),
   concierge: (
     <>
-      <path d="M9 30h30" />
-      <rect x="14" y="30" width="20" height="7" opacity="0.55" />
-      <path d="M9 30a15 15 0 0 1 30 0" strokeDasharray="3 3" opacity="0.45" />
-      <circle cx="24" cy="20" r="3.5" />
+      <path d="M12 31a12 12 0 0 1 24 0z" />
+      <rect x="7.5" y="31" width="33" height="4.5" rx="1.5" />
+      <circle cx="24" cy="15.5" r="2.2" />
     </>
   ),
 }
@@ -95,21 +94,26 @@ export default function Amenities() {
 
         <ul className="mt-16 grid gap-px bg-ink/10 sm:grid-cols-2 lg:grid-cols-4">
           {amenities.map((a, i) => (
-            <li key={a.name}>
-              <Reveal delay={(i % 4) * 80}>
-                <div className="group h-full bg-ivory p-7 transition-colors duration-700 hover:bg-sand/50">
+            <li key={a.name} className="bg-ivory">
+              <Reveal delay={(i % 4) * 80} className="h-full">
+                <div className="group flex h-full flex-col bg-ivory px-7 pt-8 pb-9 transition-colors duration-700 hover:bg-sand/50">
+                  <span className="eyebrow">{String(i + 1).padStart(2, '0')}</span>
                   <svg
                     viewBox="0 0 48 48"
                     aria-hidden
-                    className="h-12 w-12 text-ink transition-colors duration-700 group-hover:text-clay"
+                    className="mt-6 h-16 w-16 text-ink transition-colors duration-700 group-hover:text-clay"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="1"
+                    strokeWidth="1.25"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     {GLYPHS[a.glyph]}
                   </svg>
-                  <h3 className="display mt-8 text-[1.625rem] leading-tight">{a.name}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ink-soft">{a.note}</p>
+                  {/* The title block reserves two lines so every note in the
+                      row starts on the same baseline, however long the name. */}
+                  <h3 className="display mt-7 min-h-[2.4em] text-[1.5rem] leading-[1.2]">{a.name}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">{a.note}</p>
                 </div>
               </Reveal>
             </li>

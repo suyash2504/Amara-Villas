@@ -147,19 +147,19 @@ export default function Hero() {
       <style>{`
         @keyframes drop { 0% { transform: translateY(-100%) } 60%,100% { transform: translateY(320%) } }
 
-        /* 40s each way, and only 6% of travel — slow and small enough that
-           you notice the frame has changed rather than watching it move. */
+        /* 18s each way with a wider push, so the movement is actually visible
+           while you are reading the wordmark rather than only on a long stay. */
         @keyframes heroDrift {
-          from { transform: scale(1.04) translate3d(0, 0, 0); }
-          to   { transform: scale(1.10) translate3d(-1.4%, -1%, 0); }
+          from { transform: scale(1.05) translate3d(0, 0, 0); }
+          to   { transform: scale(1.16) translate3d(-3%, -2%, 0); }
         }
         .hero-drift {
-          transform: scale(1.04);
-          animation: heroDrift 40s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+          transform: scale(1.05);
+          animation: heroDrift 18s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
           will-change: transform;
         }
         @media (prefers-reduced-motion: reduce) {
-          .hero-drift { animation: none; transform: scale(1.04); }
+          .hero-drift { animation: none; transform: scale(1.05); }
         }
       `}</style>
     </section>
